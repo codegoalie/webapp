@@ -1,0 +1,23 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: webapp
+  annotations:
+    traefik.frontend.rule.type: pathprefixstrip
+spec:
+  rules:
+  - host: love.lineleader.pro
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: webapp
+          servicePort: 80
+  - host: www.lineleader.pro
+    http:
+      paths:
+      - path: /love
+        backend:
+          serviceName: webapp
+          servicePort: 80
